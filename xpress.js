@@ -10,9 +10,10 @@ module.exports = function(){
       res.end(JSON.stringify(data))
     }
     try {
-      if(typeof routes[req.method][req.url] == "function")
+      if(typeof routes[req.method][req.url] == "function"){
 	return routes[req.method][req.url](req, res)
-      for( var l in routes.GET ){
+      }
+      for( var l in routes[req.method] ){
 	if(new RegExp(l).test(req.url)){
 	  var matches = req.url.match(l)
 	  matches.shift()
